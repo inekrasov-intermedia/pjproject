@@ -7,45 +7,40 @@ on:
 
 env:
   RELEASE_ARCHIVE_NAME: android-release
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     container: 
-      image: rinekri/pjsip-android-builder:latest  # TODO: replace with actual image when it will be uploaded
+      image: rinekri/pjsip-android-builder:latest  # TODO: replace with intermedia image when it will be uploaded
       volumes:
-        - ${{ github.workspace }}:/home/tools/pjproject ## TODO: replace with actual volume
-        - ${{ github.workspace }}:/home/output/pjsip-build-output ## TODO: replace with actual volume
+        - ${{ github.workspace }}/input:/home/tools/pjproject 
+        - ${{ github.workspace }}/output:/home/output/pjsip-build-output
       options: --user root
     steps:
       - 
         name: Checkout code
         uses: actions/checkout@v3
+        with:
+          path: input
       -
         name: Build library
         run: |
+          mkdir -p output
           cd /home
           ./build
       - 
-        name: Create release asset 
-        env: 
-          LIB_PATH: ${{ github.workspace }}/lib
-          JAVA_PATH: ${{ github.workspace }}/java
-          LOGS_PATH: ${{ github.workspace }}/logs
+        name: Create asset 
         run: |
-          pwd
-          ls
-          tar -zcvf "$RELEASE_ARCHIVE_NAME".tar.gz -C "$LIB_PATH" "$JAVA_PATH" "$LOGS_PATH"
+          tar -czvf "$RELEASE_ARCHIVE_NAME".tar.gz -C output .
       - 
         name: Create release
-        env:
-          ASSET_PATH: ${{ github.workspace }}/${{ env.RELEASE_ARCHIVE_NAME }}
         id: create_release
         uses: ncipollo/release-action@v1
         with:
           name: Android release ${{ github.ref_name }}
-          artifacts: ${{ env.ASSET_PATH }}.tar.gz
+          artifacts: ${{ env.RELEASE_ARCHIVE_NAME }}.tar.gz
           draft: true
           prerelease: false
