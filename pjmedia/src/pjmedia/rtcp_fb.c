@@ -58,6 +58,7 @@ PJ_DEF(pj_status_t) pjmedia_rtcp_fb_build_nack(
     hdr->rtcp_common.pt = RTCP_RTPFB;
     hdr->rtcp_common.count = 1; /* FMT = 1 */
     hdr->rtcp_common.length = pj_htons((pj_uint16_t)(len/4 - 1));
+    hdr->ssrc_src = pj_htonl(session->peer_ssrc);
 
     /* Build RTCP-FB NACK FCI */
     p = (pj_uint8_t*)hdr + sizeof(*hdr);
