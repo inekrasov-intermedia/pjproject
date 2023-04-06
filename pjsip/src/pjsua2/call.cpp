@@ -382,6 +382,7 @@ void StreamInfo::fromPj(const pjsua_stream_info &info)
 void CodecOpusStat::fromPj(const pjmedia_codec_opus_stat &opus_stat) {
     pktCnt = opus_stat.pkt_cnt;
     pktWithFecCnt = opus_stat.pkt_with_fec_cnt;
+    pktWithFecCnt2 = opus_stat.pkt_with_fec_cnt2;
     audCnt = opus_stat.aud_cnt;
     fecCnt = opus_stat.fec_cnt;
     recoverWithCopyCnt = opus_stat.recover_with_copy_cnt;

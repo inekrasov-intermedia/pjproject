@@ -112,6 +112,7 @@ typedef struct pjmedia_codec_opus_stat
 {
     unsigned  pkt_cnt;                 /**< Packet count                   */
     unsigned  pkt_with_fec_cnt;        /**< Packet with FEC count          */
+    unsigned  pkt_with_fec_cnt2;       /**< Packet with FEC count 2         */
     unsigned  aud_cnt;                 /**< Audio packet count             */
     unsigned  fec_cnt;                 /**< FEC count                      */
     unsigned  recover_with_copy_cnt;   /**< Recoverwith copy               */

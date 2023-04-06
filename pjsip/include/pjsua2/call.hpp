@@ -679,6 +679,7 @@ struct CodecOpusStat
 
     unsigned  pktCnt;               /**< Packet count                   */
     unsigned  pktWithFecCnt;        /**< Packet with FEC count          */
+    unsigned  pktWithFecCnt2;       /**< Packet with FEC count 2         */
     unsigned  audCnt;               /**< Audio packet count             */
     unsigned  fecCnt;               /**< FEC count                      */
     unsigned  recoverWithCopyCnt;   /**< Recoverwith copy               */
