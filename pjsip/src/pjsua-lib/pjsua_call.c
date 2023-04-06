@@ -3115,6 +3115,7 @@ PJ_DEF(pj_status_t) pjsua_call_set_hold(pjsua_call_id call_id,
     return pjsua_call_set_hold2(call_id, 0, msg_data);
 }
 
+// Executes from call.setHold
 PJ_DEF(pj_status_t) pjsua_call_set_hold2(pjsua_call_id call_id,
                                          unsigned options,
                                          const pjsua_msg_data *msg_data)

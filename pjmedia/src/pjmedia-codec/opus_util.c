@@ -127,7 +127,10 @@ int Opus_PacketHasFec1(const pj_uint8_t* payload, pj_size_t payload_length_bytes
  * This method is based on Definition of the Opus Audio Codec
  * (https://tools.ietf.org/html/rfc6716). Basically, this method is based on
  * parsing the LP layer of an Opus packet, particularly the LBRR flag.
- *
+ *  
+ * Detects whether a packet has forward error correction. The packet is
+ * comprised of the samples in |encoded| which is |encoded_len| bytes long.
+ * Returns true if the packet has FEC and false otherwise.
  */
 int Opus_PacketHasFec2(const pj_uint8_t* payload, pj_size_t payload_length_bytes) {
     if (payload == NULL || payload_length_bytes == 0) {
