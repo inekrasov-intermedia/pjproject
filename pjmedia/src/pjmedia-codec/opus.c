@@ -1116,6 +1116,8 @@ static pj_status_t  codec_decode( pjmedia_codec *codec,
 
     if (fec == 1) {
         PJ_LOG(4, (THIS_FILE, "Opus codec decode: type = %u size = %u | +1 PacketTryRecoverWithFec", inframe->type, inframe->size));
+    } else {
+        PJ_LOG(4, (THIS_FILE, "Opus codec decode without fec: type = %u size = %u", inframe->type, inframe->size));
     }
 
     if (packet_has_fec == 1) {
