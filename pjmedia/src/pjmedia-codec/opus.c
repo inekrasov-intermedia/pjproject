@@ -1083,6 +1083,9 @@ static pj_status_t  codec_decode( pjmedia_codec *codec,
 
     inframe = &opus_data->dec_frame[opus_data->dec_frame_index];
 
+
+    PJ_LOG(4, (THIS_FILE, "Opus codec before decode: inframe type = %u input type = %u", inframe->type, input->type));
+
     if (inframe->type != PJMEDIA_FRAME_TYPE_AUDIO) {
         /* Update current frame index */
         opus_data->dec_frame_index++;
