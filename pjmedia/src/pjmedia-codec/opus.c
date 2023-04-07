@@ -1115,15 +1115,11 @@ static pj_status_t  codec_decode( pjmedia_codec *codec,
                                    inframe->size : 0);
 
     if (fec == 1) {
-        PJ_LOG(3, (THIS_FILE, "Opus codec decode: type = %u size = %u | +1 PacketTryRecoverWithFec", inframe->type, inframe->size));
+        PJ_LOG(4, (THIS_FILE, "Opus codec decode: type = %u size = %u | +1 PacketTryRecoverWithFec", inframe->type, inframe->size));
     }
 
     if (packet_has_fec == 1) {
-        PJ_LOG(3, (THIS_FILE, "Opus codec decode: type = %u size = %u | +1 PacketWithFec", inframe->type, inframe->size));
-    }
-
-    if (packet_has_fec2 == 1) {
-        PJ_LOG(3, (THIS_FILE, "Opus codec decode: type = %u size = %u | +1 PacketWithFecExperimental", inframe->type, inframe->size));
+        PJ_LOG(4, (THIS_FILE, "Opus codec decode: type = %u size = %u | +1 PacketWithFec", inframe->type, inframe->size));
     }
 
     decoded_samples = opus_decode( opus_data->dec,
